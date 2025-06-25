@@ -28,15 +28,3 @@ config:
       type: number
       description: "Max trigger per seconds"
       default: 1
-
-peripheral_requirements:
-  - peripheral_type: Camera
-    name: CAMERA
-    constraints:
-      type: Camera
-      camera_types:
-        - Picamera
-      protocols:
-        - libcamera
-  - peripheral_type: ISP
-    name: ISP
