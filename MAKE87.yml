@@ -20,7 +20,18 @@ interfaces:
         spec:
           make87_message: make87_messages.image.compressed.ImageJPEG
         encoding: proto
-    
+  - name: live-view
+    protocol: http
+    servers:
+      - name: live_view
+        spec:
+          string: live_view:0.1
+        port:
+          name: live_view
+          protocol: HTTP
+          target_port: 8080
+          is_system_interface: true
+   
 config:
   type: object
   properties:
