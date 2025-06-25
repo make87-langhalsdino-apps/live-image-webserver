@@ -1,0 +1,42 @@
+version: 1
+build:
+  custom:
+    dockerfile: build_kit/Dockerfile
+    platforms: [linux/arm64]
+dev_build:
+  custom:
+    dockerfile: build_kit/Dockerfile.dev
+    platforms: [linux/arm64]
+
+interfaces:
+  - name: zenoh-client
+    protocol: zenoh
+    default_port:
+      name: zenoh-client
+      protocol: TCP
+      target_port: 7447
+    subscribers:
+      - name: DETECTED_CHANGED_IMAGE
+        spec:
+          make87_message: make87_messages.image.compressed.ImageJPEG
+        encoding: proto
+    
+config:
+  type: object
+  properties:
+    trigger_limit_fps:
+      type: number
+      description: "Max trigger per seconds"
+      default: 1
+
+peripheral_requirements:
+  - peripheral_type: Camera
+    name: CAMERA
+    constraints:
+      type: Camera
+      camera_types:
+        - Picamera
+      protocols:
+        - libcamera
+  - peripheral_type: ISP
+    name: ISP
