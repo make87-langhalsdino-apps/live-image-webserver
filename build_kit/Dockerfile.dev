@@ -1,3 +1,5 @@
 FROM ghcr.io/make87/python3-dev:latest
 
+EXPOSE 8080
+
 ENTRYPOINT [ "./entrypoint-dev.sh" ]
